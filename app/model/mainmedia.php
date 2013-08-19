@@ -82,6 +82,7 @@ class Model_Mainmedia extends Model
 
 
 	public function readById($ids) {	
+		$this->data = array();
 		if (! is_array($string = $ids)) {
 			$ids = array();
 			$ids[] = $string;

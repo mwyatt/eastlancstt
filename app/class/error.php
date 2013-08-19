@@ -21,7 +21,10 @@ class Error
     public function __construct($debug = 'no') {
         $this->debug = $debug;
         if ($this->debug = 'yes') {
-	        error_reporting(E_ALL);
+        	
+	        // error_reporting(E_ALL);
+	        // level for server
+	        error_reporting(30711);
 	        ini_set('display_errors', 1);
         }
 		set_error_handler(array($this, 'handle'));

@@ -21,25 +21,14 @@ class Database
 	public $dbh;
 
 
-	/**
-	 * credentials variable
-	 * @todo  improve this to ensure that the configuration can be portable
-	 * what if you need to update this file with additional methods?
-	 * @var array
-	 */
-	public static $credentials = array(
-		'host' => 'localhost',
-		'port' => '80',
-		'basename' => 'eastlancstt',
-		'username' => 'root',
-		'password' => 'root'
-	);
+	public $credentials;
 
 
 	/**
 	 * connects to the database
 	 */
-	public function __construct() {
+	public function __construct($credentials) {
+		$this->credentials = $credentials;
 		$this->connect();
 	}
 	
@@ -49,7 +38,7 @@ class Database
 	 * @return [type] [description]
 	 */
 	public function getCredentials() {
-		return self::$credentials;
+		return $this->credentials;
 	}
 	
 	

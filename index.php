@@ -6,17 +6,13 @@
  * @version	0.1
  * @license http://www.php.net/license/3_01.txt PHP License 3.01
  */ 
-echo '<pre>';
-error_reporting(30711);
-print_r(error_reporting());
-echo '</pre>';
-exit;
 
 define('BASE_PATH', (string) (__DIR__ . '/'));
+require_once(BASE_PATH . 'app/config.php');
 require_once(BASE_PATH . 'app/class/autoloader.php');
 spl_autoload_register(array('Autoloader', 'load'));
-$error = new Error($debug = 'yes');
-$database = new Database();
+$error = new Error($errorReporting);
+$database = new Database($credentials);
 $session = new Session();
 $session
 	->start()
