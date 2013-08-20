@@ -29,11 +29,6 @@ class Error
 	
 	
     public function handle($errorType, $errorString, $errorFile, $errorLine) {
-    	echo '<pre>';
-    	print_r('variable');
-    	echo '</pre>';
-    	exit;
-    	
 		switch ($this->debug) {
 			case 'no':
 				file_put_contents(BASE_PATH . 'error.txt', file_get_contents(BASE_PATH . 'error.txt') . '[Type ' . $errorType . '] ' . $errorString . ' | ' . $errorFile . ' [Line ' . $errorLine . ']' . "\n");
