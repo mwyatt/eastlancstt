@@ -20,18 +20,20 @@ class Error
 	
     public function __construct($debug = 'no') {
         $this->debug = $debug;
-        if ($this->debug = 'yes') {
-        	
-	        // error_reporting(E_ALL);
-	        // level for server
-	        error_reporting(30711);
+        if ($this->debug == 'yes') {
 	        ini_set('display_errors', 1);
         }
+        error_reporting(30711);
 		set_error_handler(array($this, 'handle'));
     }
 	
 	
     public function handle($errorType, $errorString, $errorFile, $errorLine) {
+    	echo '<pre>';
+    	print_r('variable');
+    	echo '</pre>';
+    	exit;
+    	
 		switch ($this->debug) {
 			case 'no':
 				file_put_contents(BASE_PATH . 'error.txt', file_get_contents(BASE_PATH . 'error.txt') . '[Type ' . $errorType . '] ' . $errorString . ' | ' . $errorFile . ' [Line ' . $errorLine . ']' . "\n");
