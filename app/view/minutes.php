@@ -10,7 +10,7 @@
 		
 	<div class="item clearfix">
 		<a class="button" href="<?php echo $media['guid']; ?>" target="_blank">Download</a>
-		<h2><a href="<?php echo $media['guid']; ?>" target="_blank"><?php echo ($minute['type'] == 'minutes' ? date('D jS F Y', $this->get($minute, 'date_published')) : $minute['title']) ?></a></h2>
+		<h2><a href="<?php echo $media['guid']; ?>" target="_blank"><?php echo $minute['title'] ?></a></h2>
 	</div>
 
 	<?php endforeach ?>
