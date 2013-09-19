@@ -69,7 +69,7 @@ shuffle($covers);
 $covers = false;
 $covers[] = array(
 	'title' => 'Download the Handbook'
-	, 'guid' => $this->url('base') . 'media/handbook.pdf'
+	, 'guid' => $this->url('base') . 'media/handbook-2013-2014.pdf'
 	, 'theme' => 'orange'
 );
 $covers[] = array(

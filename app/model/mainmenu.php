@@ -248,7 +248,7 @@ class Model_Mainmenu extends Model
 		$leagueDrop[] = array(
 			'name' => 'Handbook'
 			, 'current' => false
-			, 'guid' => $this->config->getUrl('base') . 'media/handbook.pdf'
+			, 'guid' => $this->config->getUrl('base') . 'media/handbook-2013-2014.pdf'
 		);
 		$leagueDrop[] = array(
 			'name' => 'Player performance'
