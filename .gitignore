@@ -170,3 +170,5 @@ app/cache/
 .sass-cache/
 Guardfile
 compass/
+error.txt
+timthumb/cache/

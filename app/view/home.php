@@ -7,9 +7,9 @@ $covers[] = array(
 	, 'button' => 'Go'
 );
 $covers[] = array(
-	'title' => 'Summer League'
-	, 'guid' => $this->url('base') . 'page/summer-league/'
-	, 'description' => 'Register your interest for the upcoming summer league.'
+	'title' => 'ETTA Membership Renewal'
+	, 'guid' => $this->url('base') . 'press/etta-membership-renewal-64/'
+	, 'description' => 'Please ensure you have renewed your resgistration with the ETTA.'
 	, 'button' => 'More Information'
 );
 $covers[] = array(
