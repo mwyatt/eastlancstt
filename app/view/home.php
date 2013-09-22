@@ -9,15 +9,15 @@ $covers[] = array(
 $covers[] = array(
 	'title' => 'ETTA Membership Renewal'
 	, 'guid' => $this->url('base') . 'press/etta-membership-renewal-64/'
-	, 'description' => 'Please ensure you have renewed your resgistration with the ETTA.'
+	, 'description' => 'Please ensure you have renewed your registration with the ETTA.'
 	, 'button' => 'More Information'
 );
-$covers[] = array(
-	'title' => 'Player Performance'
-	, 'guid' => $this->url('base') . 'player/performance/'
-	, 'description' => 'Visit the player performance to see who has gained the most ranking points throughout the season.'
-	, 'button' => 'Go'
-);
+// $covers[] = array(
+// 	'title' => 'Player Performance'
+// 	, 'guid' => $this->url('base') . 'player/performance/'
+// 	, 'description' => 'Visit the player performance to see who has gained the most ranking points throughout the season.'
+// 	, 'button' => 'Go'
+// );
 $covers[] = array(
 	'title' => 'Results archive'
 	, 'guid' => $this->url('base') . 'archive/'

@@ -172,3 +172,4 @@ Guardfile
 compass/
 error.txt
 timthumb/cache/
+archive-older/
