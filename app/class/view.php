@@ -88,7 +88,7 @@ class View extends Model
 		// presentation & cache
 		ob_start();	
 		require_once($path);
-		$cache->create($templateTitle, ob_get_contents());
+		// $cache->create($templateTitle, ob_get_contents());
 		ob_end_flush();	
 		exit;
 	}

@@ -209,16 +209,18 @@ class Model_Mainmenu extends Model
 		$user = new model_mainuser($this->database, $this->config);
 		if ($accessTo = $user->getPermission($user->get('level'))) {
 			foreach ($this->getClassMethods('controller_admin') as $adminMethod) {
-				foreach ($this->getClassMethods('controller_admin_' . $adminMethod) as $method) {
-					$methods[]=$method;
-					if (! in_array($method, $accessTo)) {
-						continue;
+				if ($this->getClassMethods('controller_admin_' . $adminMethod)) {
+					foreach ($this->getClassMethods('controller_admin_' . $adminMethod) as $method) {
+						$methods[]=$method;
+						if (! in_array($method, $accessTo)) {
+							continue;
+						}
+						$this->data['admin'][] = array(
+							'name' => ucfirst($method)
+							, 'current' => ($this->config->getUrl(2) == $method ? true : false)
+							, 'guid' => $this->config->getUrl('admin') . $adminMethod . '/' . $method . '/'
+						);
 					}
-					$this->data['admin'][] = array(
-						'name' => ucfirst($method)
-						, 'current' => ($this->config->getUrl(2) == $method ? true : false)
-						, 'guid' => $this->config->getUrl('admin') . $adminMethod . '/' . $method . '/'
-					);
 				}
 			}
 			return;
