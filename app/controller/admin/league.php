@@ -30,7 +30,7 @@ class Controller_Admin_League extends Controller
 		$division = new Model_Ttdivision($this->database, $this->config);
 		if (array_key_exists('form_update', $_POST)) {
 			$player->update($_GET['edit']);
-			$userAction->create($this->session->get('user', 'id'), 'update', 'player ' . $_POST['first_name'] . ' ' . $_POST['last_name'] . $_POST['edit']);
+			$userAction->create($this->session->get('user', 'id'), 'update', 'player ' . $_POST['first_name'] . ' ' . $_POST['last_name'] . $_GET['edit']);
 			$this->route('current');
 		}
 		if (array_key_exists('form_create', $_POST)) {
