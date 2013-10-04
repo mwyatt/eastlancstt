@@ -59,4 +59,14 @@ class Error
 				// break;
 		}	
     }
+
+
+    /**
+     * empties the error log
+     * @return bool?
+     */
+    public function emptyLog()
+    {
+    	return file_put_contents(BASE_PATH . 'error.txt', '');
+    }
 }

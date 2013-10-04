@@ -40,6 +40,9 @@ class Controller_Ajax extends Controller
 
 	
 	public function ttFixtureResult() {
+		if (! array_key_exists('method', $_GET) || ! array_key_exists('action', $_GET)) {
+			return;
+		}
 		$fixtureResult = new Model_Ttfixture_Result($this->database, $this->config);
 		if (
 			$_GET['method'] == 'readByPlayerId'
@@ -128,6 +131,9 @@ class Controller_Ajax extends Controller
 
 	
 	public function ttEncounterPart() {
+		if (! array_key_exists('method', $_GET) || ! array_key_exists('player_id', $_GET)) {
+			return;
+		}
 		$encounter = new Model_Ttencounter_Part($this->database, $this->config);
 		if (method_exists($encounter, $_GET['method'])) {
 			$encounter->$_GET['method']($_GET['player_id']);

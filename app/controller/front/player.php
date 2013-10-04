@@ -21,7 +21,6 @@ class Controller_Front_Player extends Controller
 	 * @param  string $action after the index?
 	 */
 	public function index() {
-		// $this->cache->load('player');
 		$player = new Model_Ttplayer($this->database, $this->config);
 		if ($this->config->getUrl(1)) {
 			$id = $this->getId($this->config->getUrl(1));

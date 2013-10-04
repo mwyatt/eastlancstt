@@ -27,6 +27,11 @@ $config
 	->setObject($session);
 $controller = new Controller();
 
+// empty error log
+if (array_key_exists('error_log_empty', $_GET)) {
+	$error->emptyLog();
+}
+
 // admin, ajax
 if ($controller->load(array($config->getUrl(0)), $config->getUrl(1), false, $database, $config)) {
 	exit;

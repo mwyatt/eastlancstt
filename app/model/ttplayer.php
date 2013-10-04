@@ -207,13 +207,15 @@ class Model_Ttplayer extends Model
 			where tt_player.id = ?
 			group by tt_player.id
 		");
+		$players = array();
 		foreach ($ids as $id) {
 			$sth->execute(array($id));
-			$player = $sth->fetch(PDO::FETCH_ASSOC);
-			$players[$player['id']] = $player;
-			$players[$player['id']]['team_guid'] = $this->getGuid('team', $player['team_name'], $player['team_id']);
-			$players[$player['id']]['division_guid'] = $this->getGuid('division', $player['division_name']);
-			$players[$player['id']]['average'] = $this->calcAverage($player['won'], $player['played']);
+			if ($player = $sth->fetch(PDO::FETCH_ASSOC)) {
+				$players[$player['id']] = $player;
+				$players[$player['id']]['team_guid'] = $this->getGuid('team', $player['team_name'], $player['team_id']);
+				$players[$player['id']]['division_guid'] = $this->getGuid('division', $player['division_name']);
+				$players[$player['id']]['average'] = $this->calcAverage($player['won'], $player['played']);
+			}
 		}
 		if (count($players) == 1) {
 			$players = current($players);

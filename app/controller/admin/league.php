@@ -54,7 +54,7 @@ class Controller_Admin_League extends Controller
 		}
 		if (array_key_exists('delete', $_GET)) {
 			$player->deleteById($_GET['delete']);
-			$userAction->create($this->session->get('user', 'id'), 'delete', 'player ' . $id);
+			$userAction->create($this->session->get('user', 'id'), 'delete', 'player ' . $_GET['delete']);
 			$this->route('current_noquery');
 		}
 		if ($this->config->getUrl(3) == 'new') {

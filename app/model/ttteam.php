@@ -150,14 +150,16 @@ class Model_Ttteam extends Model
 			group by tt_team.id
 			order by tt_division.id, tt_team.name
 		");
+		$teams = array();
 		foreach ($ids as $id) {
 			$sth->execute(array($id));
-			$team = $sth->fetch(PDO::FETCH_ASSOC);
-			$teams[$team['id']] = $team;
-			$teams[$team['id']]['home_night'] = self::$weekDays[$team['home_night']];
-			$teams[$team['id']]['division_guid'] = $this->getGuid('division', $team['division_name']);
-			$teams[$team['id']]['secretary_guid'] = $this->getGuid('player', $team['secretary_full_name'], $team['secretary_id']);
-			$teams[$team['id']]['guid'] = $this->getGuid('team', $team['name'], $team['id']);
+			if ($team = $sth->fetch(PDO::FETCH_ASSOC)) {
+				$teams[$team['id']] = $team;
+				$teams[$team['id']]['home_night'] = self::$weekDays[$team['home_night']];
+				$teams[$team['id']]['division_guid'] = $this->getGuid('division', $team['division_name']);
+				$teams[$team['id']]['secretary_guid'] = $this->getGuid('player', $team['secretary_full_name'], $team['secretary_id']);
+				$teams[$team['id']]['guid'] = $this->getGuid('team', $team['name'], $team['id']);
+			}
 		}
 		if (count($teams) == 1) {
 			$teams = current($teams);
