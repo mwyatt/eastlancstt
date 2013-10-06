@@ -6,6 +6,10 @@
 
 <?php if ($this->get('model_ttplayer')) : ?>
 
+	<div class="tabs-merit clearfix">
+		<a href="<?php echo $this->url('current_noquery') ?>" class="tab-merit button">View by Sets</a>
+		<a href="<?php echo $this->url('current_noquery') ?>?matches=true" class="tab-merit button">View by Matches</a>
+	</div>
 	<table class="main" width="100%" cellspacing="0" cellpadding="0">
 		<tr>
 			<th class="full_name">Name</th>

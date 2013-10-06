@@ -27,7 +27,11 @@ class Controller_Front_Division extends Controller
 	public function merit() {
 		$division = $this->view->getObject('division');
 		$player = new Model_Ttplayer($this->database, $this->config);
-		$player->readMerit($division['id']);
+		if (array_key_exists('matches', $_GET)) {
+			$player->readMeritMatches($division['id']);
+		} else {
+			$player->readMerit($division['id']);
+		}
 		$this->view
 			->setMeta(array(		
 				'title' => $division['name'] . ' division merit table'

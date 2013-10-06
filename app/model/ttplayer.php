@@ -322,6 +322,53 @@ class Model_Ttplayer extends Model
 
 
 	/**
+	 * reads in the table for the full merit but by matches and
+	 * not sets
+	 * @param  int $divisionId 
+	 * @return array             
+	 */
+	public function readMeritMatches($divisionId)
+	{	
+		$sth = $this->database->dbh->prepare("	
+			select
+				tt_player.id
+				, concat(tt_player.first_name, ' ', tt_player.last_name) as full_name
+				, tt_team.id as team_id
+				, tt_team.name as team_name
+				, tt_player.rank
+				, (sum(case when tt_encounter_result.left_id = tt_player.id and tt_encounter_result.status = '' and tt_encounter_result.left_score = 3 then 1 else 0 end) + sum(case when tt_encounter_result.right_id = tt_player.id and tt_encounter_result.status = '' and tt_encounter_result.right_score = 3 then 1 else 0 end)) as won
+				, sum(
+					case
+						when tt_encounter_result.status = '' and tt_encounter_result.left_id = tt_player.id or tt_encounter_result.right_id = tt_player.id then 1
+					else 0
+				end) as played
+			from tt_player
+			left join tt_team on tt_team.id = tt_player.team_id
+			left join tt_encounter_result on tt_encounter_result.left_id = tt_player.id or tt_encounter_result.right_id = tt_player.id
+			where tt_team.division_id = ?
+			group by tt_player.id
+		");
+		$sth->execute(array($divisionId));
+		while ($row = $sth->fetch(PDO::FETCH_ASSOC)) {	
+			if (! $row['played']) {
+				continue;
+			}
+			$row['average'] = $this->calcAverage($row['won'], $row['played']);
+			$averages[$row['id']] = $row['average'];
+			$row['guid'] = $this->getGuid('player', $row['full_name'], $row['id']);
+			$row['team_guid'] = $this->getGuid('team', $row['team_name'], $row['team_id']);
+			$this->data[$row['id']] = $row;
+		}
+		if ($this->data) {
+			array_multisort(array_filter($averages), SORT_DESC, $this->data);
+			return $this->data;
+		} else {
+			return false;
+		}
+	}	
+
+
+	/**
 	 * calculates the average 0 to 100%
 	 * @param  int $won    
 	 * @param  int $played 
