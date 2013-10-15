@@ -2,6 +2,13 @@
 <?php $tabIndex = 1; ?>	
 
 <div class="content fixtures clearfix<?php echo ($this->get('fixture') ? ' update' : ' fulfill') ?>">
+
+<?php if ($this->get('fixture')): ?>
+	
+	<a href="<?php echo $this->url('current_noquery') ?>?delete=<?php echo $this->get('fixture', 'id') ?>" class="right button remove-fixture">Delete Fixture</a>
+
+<?php endif ?>
+
 	<h2><?php echo ($this->get('fixture') ? 'Update ' : '') ?>Scorecard</h2>
 	<form class="main" method="post">
 

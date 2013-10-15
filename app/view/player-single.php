@@ -65,7 +65,7 @@
 			</tr>		
 		</table>
 		<div class="clearfix row">
-			<a href="<?php echo $this->get('model_ttplayer', 'division_guid') ?>" class="button right">Merit Table</a>
+			<a href="<?php echo $this->get('model_ttplayer', 'division_guid') ?>merit/" class="button right">Merit Table</a>
 		</div>
 	</div>
 

@@ -56,7 +56,7 @@ class Model_Admin_Ttfixture extends Model_Ttfixture
 	}
 
 
-	public function update($id) {
+	public function delete($id) {
 		$ttPlayer = new Model_Ttplayer($this->database, $this->config);
 		$ttEncounterResult = new Model_Ttencounter_Result($this->database, $this->config);
 		$ttEncounterPart = new Model_Ttencounter_Part($this->database, $this->config);

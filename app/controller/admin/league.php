@@ -141,9 +141,19 @@ class Controller_Admin_League extends Controller
 			$this->route('current');
 		}
 		if (array_key_exists('form_update', $_POST)) {
-			if ($adminFixture->update($_GET['edit'])) {
+			if ($adminFixture->delete($_GET['edit'])) {
 				$adminFixture->fulfill();
 				$userAction->create($this->session->get('user', 'id'), 'update', 'fixture ' . $_GET['edit']);
+			}
+			$this->route('current');
+		}
+		if (array_key_exists('delete', $_GET)) {
+			if (! $adminFixture->readById($_GET['delete'])) {
+				$this->route('current_noquery');
+			}
+			if ($adminFixture->delete($_GET['delete'])) {
+				$adminFixture->fulfill();
+				$userAction->create($this->session->get('user', 'id'), 'delete', 'fixture ' . $_GET['delete']);
 			}
 			$this->route('current');
 		}
