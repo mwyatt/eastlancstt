@@ -256,8 +256,9 @@ class Model_Ttplayer extends Model
 				end) as played
 			from tt_player
 			left join tt_team on tt_player.team_id = tt_team.id
-			left join tt_encounter_result on tt_encounter_result.left_id = tt_player.id or tt_encounter_result.right_id = tt_player.id
 			left join tt_division on tt_team.division_id = tt_division.id
+			left join tt_fixture_result on tt_fixture_result.left_id = tt_player.team_id or tt_fixture_result.right_id = tt_player.team_id
+			left join tt_encounter_result on tt_encounter_result.fixture_id = tt_fixture_result.fixture_id
 			where tt_team.id = ?
 			group by tt_player.id
 			order by tt_player.rank desc
@@ -288,14 +289,11 @@ class Model_Ttplayer extends Model
 				, tt_team.name as team_name
 				, tt_player.rank
 				, (sum(case when tt_encounter_result.left_id = tt_player.id and tt_encounter_result.status = '' then tt_encounter_result.left_score else 0 end) + sum(case when tt_encounter_result.right_id = tt_player.id and tt_encounter_result.status = '' then tt_encounter_result.right_score else 0 end)) as won
-				, sum(
-					case
-						when tt_encounter_result.status = '' and tt_encounter_result.left_id = tt_player.id or tt_encounter_result.right_id = tt_player.id then tt_encounter_result.left_score + tt_encounter_result.right_score
-					else 0
-				end) as played
+				, sum(case when tt_encounter_result.status = '' and tt_encounter_result.left_id = tt_player.id or tt_encounter_result.right_id = tt_player.id then tt_encounter_result.left_score + tt_encounter_result.right_score else 0 end) as played
 			from tt_player
 			left join tt_team on tt_team.id = tt_player.team_id
-			left join tt_encounter_result on tt_encounter_result.left_id = tt_player.id or tt_encounter_result.right_id = tt_player.id
+			left join tt_fixture_result on tt_fixture_result.left_id = tt_player.team_id or tt_fixture_result.right_id = tt_player.team_id
+			left join tt_encounter_result on tt_encounter_result.fixture_id = tt_fixture_result.fixture_id
 			where tt_team.division_id = ?
 			group by tt_player.id
 		");
