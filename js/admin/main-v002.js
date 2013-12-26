@@ -491,6 +491,9 @@ $(document).ready(function() {
 		  parserRules:    wysihtml5ParserRules,
 		  useLineBreaks:  false
 		});
+		// tinymce.init({ 
+		// selector: '#form_html'
+		// });
 	}
 	$(document).mouseup(removeModals);	
 	$(document).keyup(function(e) {
