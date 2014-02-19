@@ -75,10 +75,7 @@ class Model_Admin_Ttfixture extends Model_Ttfixture
 					} else {
 						$change = -$change;
 					}
-					$rankChanges[$playerId] = $change;
 					$ttPlayer->updateRank($playerId, $change);
-				} else {
-					unset($rankChanges[$playerId]);
 				}
 			}
 			$ttEncounterPart->delete($partIds);

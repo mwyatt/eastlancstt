@@ -1,11 +1,17 @@
 <?php require_once('header.php'); ?>
 <?php 
 $covers[] = array(
-	'title' => 'Photo Gallery'
-	, 'guid' => $this->url('base') . 'gallery/'
-	, 'description' => 'View photos from the recent 2013 tournament.'
-	, 'button' => 'Go'
+	'title' => 'The Big Day 2014!'
+	, 'guid' => $this->url('base') . 'media/big-day-2014.pdf'
+	, 'description' => 'Click here to download the entry form.'
+	, 'button' => 'Download Form'
 );
+// $covers[] = array(
+// 	'title' => 'Photo Gallery'
+// 	, 'guid' => $this->url('base') . 'gallery/'
+// 	, 'description' => 'View photos from the recent 2013 tournament.'
+// 	, 'button' => 'Go'
+// );
 $covers[] = array(
 	'title' => 'ETTA Membership Renewal'
 	, 'guid' => $this->url('base') . 'press/etta-membership-renewal-64/'
